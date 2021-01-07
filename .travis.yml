@@ -1,0 +1,13 @@
+os: linux
+arch:
+  - amd64
+  - ppc64le
+before_script:
+  - curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+  - sudo apt update && apt install -y yarn
+script:
+  - yarn config set --home enableTelemetry 0
+  - make bootstrap
+  - make build
+  - make test
+
